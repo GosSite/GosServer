@@ -1,22 +1,27 @@
-const { MongoClient } = require('mongodb');
-const connecting_string = process.env.CONNECTING_STRING;
+const User_Contacts = require('../models/User_Contacts');
 class ContactsController {
-    async addContacts(req,res){
-        //const apps = [{id:"+7777",},{}]
-        const client = await new MongoClient(connecting_string);
-        try {
-            await client.connect();
-            const database = client.db('GosDB');
-            const collection = database.collection('User_Apps');
-            await collection.insertMany(apps);
-        } catch (error) {
-            console.error('Ошибка при добавлении данных:', error);
-            return false
+    async addContacts(body, res) {
+        const number = "+77777";
+        if (Array.isArray(body)) {
+            const contactsWithID = body.map(contact => ({ ...contact, ID: number }));
+            User_Contacts.insertMany(contactsWithID)
+                .then(savedContacts => {
+                    console.log('Контакты успешно сохранены');
+                })
+                .catch(error => {
+                    console.error('Ошибка при сохранении контактов:', error);
+                });
+        } else {
+            const contactWithID = { ...body, ID: number };
+
+            User_Contacts.create(contactWithID)
+                .then(savedContact => {
+                    console.log('Контакт успешно сохранен');
+                })
+                .catch(error => {
+                    console.error('Ошибка при сохранении контакта:', error);
+                });
         }
-        finally {
-            await client.close();
-        }
-        return true
     }
 }
 
