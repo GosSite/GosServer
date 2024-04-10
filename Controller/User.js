@@ -30,7 +30,7 @@ class User {
     }
     async getUsers(req, res) {
         try {
-            const users = await User.find({});
+            const users = await User_model.find({});
             return res.status(200).send(users)
         } catch (error) {
             return res.status(400).send(`Cannot get users: ${error}`)
@@ -39,7 +39,7 @@ class User {
     async GetUserByPhoneNumber(req, res) {
         try {
             const userCustomId = "+"+req.params.phoneNumber;
-            const user = await User.findOne({ ID: userCustomId });
+            const user = await User_model.findOne({ ID: userCustomId });
             if (!user) {
                 return res.status(404).send('Пользователь не найден');
             }
