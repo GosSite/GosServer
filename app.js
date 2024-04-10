@@ -1,13 +1,14 @@
 const express = require("express")
 const app = express()
 const UserRouter = require('./Routes/UserRouter')
+const UserController = require('./Controller/User')
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 app.use('/user', UserRouter)
 app.use(express.json());
 app.get('/',(req,res)=>{
     console.log('react native')
-    res.send("Welcome to server")
+    UserController.updateUser(req,res)
 })
 
 app.listen(PORT, ()=>{
