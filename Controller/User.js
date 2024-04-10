@@ -26,7 +26,7 @@ class User {
         return res.status(200).send("User added")
     }
     async updateUser(req, res) {
-        console.log("req body "+ req.body)
+        console.log("req body "+ req.body.contacts)
     }
     async deleteUserByPhoneNumber(req, res) {
 
