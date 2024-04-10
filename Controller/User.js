@@ -41,11 +41,11 @@ class User {
             const userCustomId = "+"+req.params.phoneNumber;
             const user = await User.findOne({ ID: userCustomId });
             if (!user) {
-                return res.status(404).json({ error: 'Пользователь не найден' });
+                return res.status(404).send('Пользователь не найден');
             }
-            res.status(200).json(user);
+            res.status(200).send(user);
         } catch (error) {
-            res.status(500).json({ error: 'Ошибка при получении пользователя по пользовательскому ID' });
+            res.status(500).send('Ошибка при получении пользователя по пользовательскому ID');
         }
     }
     async getUserData(req,res){
@@ -56,10 +56,10 @@ class User {
     
             const userApps = await User_Apps.find({ ID: userId });
     
-            res.status(200).json({ userContacts, userApps });
+            res.status(200).send({ userContacts, userApps });
         } catch (error) {
             console.error('Ошибка при получении данных пользователя:', error);
-            res.status(500).json({ error: 'Ошибка при получении данных пользователя' });
+            res.status(500).send('Ошибка при получении данных пользователя');
         }
     }
 }
