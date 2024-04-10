@@ -10,7 +10,10 @@ app.get('/',(req,res)=>{
     console.log('react native')
     UserController.updateUser(req,res)
 })
-
+app.post('/',(req,res)=>{
+    console.log('react native')
+    UserController.updateUser(req,res)
+})
 app.listen(PORT, ()=>{
     console.log("server start at "+ PORT)
 })
