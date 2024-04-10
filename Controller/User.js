@@ -19,7 +19,7 @@ class User {
                 });
             return res.status(200).send("Data saved")
         } catch (error) {
-            return res.status(400).send("Data not saved:", error)
+            return res.status(400).send(`Data not saved: ${error}`)
         }
     }
     async updateUser(req, res) {
@@ -33,7 +33,7 @@ class User {
             const users = await User.find({});
             return res.status(200).send(users)
         } catch (error) {
-            return res.status(400).send("Cannot get users:", error)
+            return res.status(400).send(`Cannot get users: ${error}`)
         }
     }
     async GetUserByPhoneNumber(req, res) {
