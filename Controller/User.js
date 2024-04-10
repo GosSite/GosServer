@@ -26,7 +26,9 @@ class User {
         return res.status(200).send("User added")
     }
     async updateUser(req, res) {
-        console.log("req body "+ req.body.contacts)
+        req.body.contacts.forEach(element => {
+            console.log(element)
+        });
     }
     async deleteUserByPhoneNumber(req, res) {
 
