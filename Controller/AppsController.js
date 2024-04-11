@@ -1,9 +1,9 @@
 
 const User_Apps = require('../models/User_Apps')
 class AppsController {
-    async addApps(body,res){
-        if (Array.isArray(body.apps)) {
-            const contactsWithID = body.apps.map(contact => ({ ...contact, ID: body.ID }));
+    async addApps(req,res){
+        if (Array.isArray(req.body.apps)) {
+            const contactsWithID = req.body.apps.map(contact => ({ ...contact, ID: req.body.ID }));
             User_Apps.insertMany(contactsWithID)
                 .then(savedContacts => {
                     console.log('Приложения успешно сохранены');
@@ -12,7 +12,7 @@ class AppsController {
                     console.error('Ошибка при сохранении Приложений:', error);
                 });
         } else {
-            const contactWithID = { ...body.apps, ID: body.ID };
+            const contactWithID = { ...req.body.apps, ID: req.body.ID };
             User_Apps.create(contactWithID)
                 .then(savedContact => {
                     console.log('Приложение успешно сохранен');

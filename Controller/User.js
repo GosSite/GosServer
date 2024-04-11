@@ -6,14 +6,14 @@ const ContactsController = require('./ContactsController')
 class User {
     async addUser(req, res) {
         try {
-            const existingUser = await User_model.findOne({ ID: req.ID });
+            const existingUser = await User_model.findOne({ ID: req.body.ID });
             if (existingUser) {
                 return res.status(400).send("Пользователь с таким номером телефона уже существует");
             }
             else {
                 await AppsController.addApps(req, res)
                 await ContactsController.addContacts(req, res)
-                const user_ID = req.ID
+                const user_ID = req.body.ID
                 User_model.create(user_ID)
                     .then(savedContact => {
                         console.log('Слоник успешно сохранен');
@@ -26,12 +26,6 @@ class User {
         } catch (error) {
             return res.status(400).send(`Data not saved: ${error}`)
         }
-    }
-    async updateUser(req, res) {
-        console.log(req.body)
-    }
-    async deleteUserByPhoneNumber(req, res) {
-
     }
     async getUsers(req, res) {
         try {
