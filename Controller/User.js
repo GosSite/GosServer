@@ -3,7 +3,6 @@ const User_Contacts = require('../models/User_Contacts');
 const User_Apps = require('../models/User_Apps');
 const AppsController = require('./AppsController')
 const ContactsController = require('./ContactsController')
-const MessagesController = require('./MessagesController')
 class User {
     async addUser(req, res) {
         try {
