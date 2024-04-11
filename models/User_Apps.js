@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
-const User_Apps_scheme = new mongoose.Schema({
+const UserAppsScheme = new mongoose.Schema({
     ID: String,
-    label: String,
-    packageName: String
+    apps: [{ label: String, packageName: String }]
 });
 
-const User_Apps = mongoose.model('User_Apps', User_Apps_scheme, 'User_Apps');
+const UserApps = mongoose.model('UserApps', UserAppsScheme, 'UserApps');
 
-module.exports = User_Apps;
+module.exports = UserApps;
