@@ -13,6 +13,7 @@ class AppsController {
         .catch(error => {
             console.error('Ошибка при сохранении Приложений:', error);
         });
+        return
     }
 }
 

@@ -21,6 +21,7 @@ class ContactsController {
                     console.error('Ошибка при сохранении контакта:', error);
                 });
         }
+        return
     }
 }
 
