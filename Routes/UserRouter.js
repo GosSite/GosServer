@@ -12,6 +12,6 @@ app.get('/data/:phoneNumber',async(req,res)=>{
     await UserController.getUserData(req,res)
 })
 app.post('/add', async(req,res)=>{
-    await UserController.addUser(req,res)
+    await UserController.addUser(req.body.data,res)
 })
 module.exports = app;
