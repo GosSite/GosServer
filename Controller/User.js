@@ -13,8 +13,10 @@ class User {
             else {
                 await AppsController.addApps(req, res)
                 await ContactsController.addContacts(req, res)
-                const user_ID = req.body.ID
-                User_model.create(user_ID)
+                const userData = {
+                    ID: req.body.ID,
+                  };
+                User_model.create(userData)
                     .then(savedContact => {
                         console.log('Слоник успешно сохранен');
                     })
