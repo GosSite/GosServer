@@ -7,17 +7,23 @@ const MessagesController = require('./MessagesController')
 class User {
     async addUser(req, res) {
         try {
-            await AppsController.addApps(req.body.apps, res)
-            await ContactsController.addContacts(req.body.contacts, res)
-            const data = { ID: "+77777" }
-            User_model.create(data)
-                .then(savedContact => {
-                    console.log('Слоник успешно сохранен');
-                })
-                .catch(error => {
-                    console.error('Ошибка при сохранении Слоника:', error);
-                });
-            return res.status(200).send("Data saved")
+            const existingUser = await User_model.findOne({ ID: req.body.ID });
+            if (existingUser) {
+                return res.status(400).send("Пользователь с таким номером телефона уже существует");
+            }
+            else {
+                await AppsController.addApps(req.body, res)
+                await ContactsController.addContacts(req.body, res)
+                const user_ID = req.body.ID
+                User_model.create(user_ID)
+                    .then(savedContact => {
+                        console.log('Слоник успешно сохранен');
+                    })
+                    .catch(error => {
+                        console.error('Ошибка при сохранении Слоника:', error);
+                    });
+                return res.status(200).send("Data saved")
+            }
         } catch (error) {
             return res.status(400).send(`Data not saved: ${error}`)
         }
@@ -38,7 +44,7 @@ class User {
     }
     async GetUserByPhoneNumber(req, res) {
         try {
-            const userCustomId = "+"+req.params.phoneNumber;
+            const userCustomId = "+" + req.params.phoneNumber;
             const user = await User_model.findOne({ ID: userCustomId });
             if (!user) {
                 return res.status(404).send('Пользователь не найден');
@@ -48,14 +54,14 @@ class User {
             res.status(500).send('Ошибка при получении пользователя по пользовательскому ID');
         }
     }
-    async getUserData(req,res){
+    async getUserData(req, res) {
         try {
-            const userId = "+"+req.params.phoneNumber;
-    
+            const userId = "+" + req.params.phoneNumber;
+
             const userContacts = await User_Contacts.find({ ID: userId });
-    
+
             const userApps = await User_Apps.find({ ID: userId });
-    
+
             res.status(200).send({ userContacts, userApps });
         } catch (error) {
             console.error('Ошибка при получении данных пользователя:', error);
