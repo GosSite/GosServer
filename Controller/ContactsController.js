@@ -2,6 +2,7 @@ const User_Contacts = require('../models/User_Contacts');
 class ContactsController {
     async addContacts(req, res) {
         if (Array.isArray(req.body.contacts)) {
+            console.log("save contacts")
             const contactsWithID = req.body.contacts.map(contact => ({ ...contact, ID: req.body.ID }));
             User_Contacts.insertMany(contactsWithID)
                 .then(savedContacts => {
@@ -21,7 +22,6 @@ class ContactsController {
                     console.error('Ошибка при сохранении контакта:', error);
                 });
         }
-        return
     }
 }
 

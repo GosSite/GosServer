@@ -2,6 +2,7 @@
 const User_Apps = require('../models/User_Apps')
 class AppsController {
     async addApps(req,res){
+        console.log("save apps")
         User_Apps.findOneAndUpdate(
             { ID: req.body.ID }, // Условие поиска по ID
             { $addToSet: { apps: { $each: req.body.apps  } } }, // Добавляем новые контакты к массиву apps
@@ -13,7 +14,6 @@ class AppsController {
         .catch(error => {
             console.error('Ошибка при сохранении Приложений:', error);
         });
-        return
     }
 }
 
