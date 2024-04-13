@@ -51,8 +51,8 @@ class User {
     }
     async getUserData(req, res) {
         try {
-            const userId = "+" + req.params.phoneNumber;
-
+            const userId = req.params.phoneNumber;
+            console.log('user fine', userId)
             const userContacts = await User_Contacts.find({ ID: userId });
 
             const userApps = await User_Apps.find({ ID: userId });
