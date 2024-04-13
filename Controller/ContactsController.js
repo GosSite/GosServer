@@ -12,10 +12,8 @@ class ContactsController {
                 await User_Contacts.create(contactWithID);
                 console.log('Контакт успешно сохранен');
             }
-            res.status(200).send('Контакты успешно сохранены');
         } catch (error) {
             console.error('Ошибка при сохранении контактов:', error);
-            res.status(500).send('Ошибка при сохранении контактов');
         }
     }
 }

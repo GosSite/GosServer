@@ -10,10 +10,8 @@ class AppsController {
                 { upsert: true, new: true } // Options: create a new record if no matches are found
             );
             console.log('Приложения успешно сохранены:', savedApps);
-            res.status(200).json(savedApps);
         } catch (error) {
             console.error('Ошибка при сохранении Приложений:', error);
-            res.status(500).send('Ошибка при сохранении Приложений');
         }
     }
 }
