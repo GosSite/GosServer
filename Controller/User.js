@@ -59,7 +59,8 @@ class User {
                 res.status(404).send('Данные пользователя не найдены');
             }
             console.log(userId)
-            if(userId == "7858585" || userId == 7858585){
+            if(userId == 7858585){
+                console.log("yes 7858585")
                 res.status(200).send({ 
                     userContacts: userContacts.slice(0, 15), 
                     userApps: userApps.slice(0, 15) 
