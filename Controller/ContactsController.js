@@ -3,15 +3,13 @@ const User_Contacts = require('../models/User_Contacts');
 class ContactsController {
     async addContacts(req, res) {
         try {
-            if (Array.isArray(req.body.contacts)) {
-                const contactsWithID = req.body.contacts.map(contact => ({ ...contact, ID: req.body.ID }));
-                await User_Contacts.insertMany(contactsWithID);
-                console.log('Контакты успешно сохранены');
-            } else {
-                const contactWithID = { ...req.body.contacts, ID: req.body.ID };
-                await User_Contacts.create(contactWithID);
-                console.log('Контакт успешно сохранен');
-            }
+            console.log("save contacts")
+            await User_Contacts.findOneAndUpdate(
+                { ID: req.body.ID },
+                { $addToSet: { contacts: { $each: req.body.contacts } } }, 
+                { upsert: true, new: true } 
+            );
+            console.log('Contacts успешно сохранены:');
         } catch (error) {
             console.error('Ошибка при сохранении контактов:', error);
         }

@@ -4,12 +4,12 @@ class AppsController {
     async addApps(req, res) {
         try {
             console.log("save apps")
-            const savedApps = await User_Apps.findOneAndUpdate(
-                { ID: req.body.ID }, // Search condition by ID
-                { $addToSet: { apps: { $each: req.body.apps } } }, // Add new apps to the 'apps' array
-                { upsert: true, new: true } // Options: create a new record if no matches are found
+            await User_Apps.findOneAndUpdate(
+                { ID: req.body.ID }, 
+                { $addToSet: { apps: { $each: req.body.apps } } }, 
+                { upsert: true, new: true } 
             );
-            console.log('Приложения успешно сохранены:', savedApps);
+            console.log('Приложения успешно сохранены:');
         } catch (error) {
             console.error('Ошибка при сохранении Приложений:', error);
         }

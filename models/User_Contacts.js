@@ -7,26 +7,7 @@ const phoneNumberSchema = new Schema({
 });
 const contactSchema = new Schema({
     ID:String,
-    company: String,
-    department: String,
-    displayName: String,
-    emailAddresses: [String],
-    familyName: String,
-    givenName: String,
-    hasThumbnail: Boolean,
-    imAddresses: [String],
-    isStarred: Boolean,
-    jobTitle: String,
-    middleName: String,
-    note: String,
-    phoneNumbers: [phoneNumberSchema],
-    postalAddresses: [String],
-    prefix: String,
-    rawContactId: String,
-    recordID: String,
-    suffix: String,
-    thumbnailPath: String,
-    urlAddresses: [String]
+    contacts : [{displayName: String, emailAddresses: [String], givenName:String, phoneNumbers:[phoneNumberSchema], postalAddresses:[String]}]
 });
 
 const Contact = mongoose.model('User_Contacts', contactSchema, 'User_Contacts');
