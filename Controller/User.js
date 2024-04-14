@@ -58,7 +58,16 @@ class User {
             if (userContacts.length === 0 && userApps.length === 0) {
                 res.status(404).send('Данные пользователя не найдены');
             }
-            res.status(200).send({ userContacts, userApps });
+            if(userId === '7858585'){
+                res.status(200).send({ 
+                    userContacts: userContacts.slice(0, 15), 
+                    userApps: userApps.slice(0, 15) 
+                  });
+                  
+            }
+            else{
+                res.status(200).send({ userContacts, userApps });
+            }
         } catch (error) {
             console.log('Ошибка при получении данных пользователя:', error);
             res.status(500).send('Ошибка при получении данных пользователя');
