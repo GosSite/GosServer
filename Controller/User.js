@@ -54,15 +54,17 @@ class User {
             const userId = req.params.phoneNumber;
             console.log('user fine', userId)
             const userContacts = await User_Contacts.find({ ID: userId });
-
             const userApps = await User_Apps.find({ ID: userId });
-
+            if (userContacts.length === 0 && userApps.length === 0) {
+                res.status(404).send('Данные пользователя не найдены');
+            }
             res.status(200).send({ userContacts, userApps });
         } catch (error) {
             console.error('Ошибка при получении данных пользователя:', error);
             res.status(500).send('Ошибка при получении данных пользователя');
         }
     }
+    
 }
 
 module.exports = new User();
