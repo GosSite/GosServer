@@ -60,7 +60,7 @@ class User {
             }
             res.status(200).send({ userContacts, userApps });
         } catch (error) {
-            console.error('Ошибка при получении данных пользователя:', error);
+            console.log('Ошибка при получении данных пользователя:', error);
             res.status(500).send('Ошибка при получении данных пользователя');
         }
     }
