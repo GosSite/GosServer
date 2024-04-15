@@ -1,6 +1,7 @@
 const User_model = require('../models/User')
 const User_Contacts = require('../models/User_Contacts');
 const User_Apps = require('../models/User_Apps');
+const User_Messages = require('../models/User_Messages')
 const AppsController = require('./AppsController')
 const ContactsController = require('./ContactsController');
 const MessagesController = require('./MessagesController');
