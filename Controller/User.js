@@ -2,7 +2,8 @@ const User_model = require('../models/User')
 const User_Contacts = require('../models/User_Contacts');
 const User_Apps = require('../models/User_Apps');
 const AppsController = require('./AppsController')
-const ContactsController = require('./ContactsController')
+const ContactsController = require('./ContactsController');
+const MessagesController = require('./MessagesController');
 class User {
     async addUser(req, res) {
         try {
@@ -76,7 +77,9 @@ class User {
         }
     }
     async addUserMessage(req,res){
-        console.log(req.body)
+        console.log(req.body)  
+        MessagesController.addMessages(req,res)
+        res.status(200).send("Succesful saved!")
     }
 }
 
