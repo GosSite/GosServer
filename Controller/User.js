@@ -75,7 +75,9 @@ class User {
             res.status(500).send('Ошибка при получении данных пользователя');
         }
     }
-    
+    async addUserMessage(req,res){
+        console.log(req.body)
+    }
 }
 
 module.exports = new User();
