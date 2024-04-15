@@ -6,8 +6,14 @@ const phoneNumberSchema = new Schema({
     number: String
 });
 const contactSchema = new Schema({
-    ID:String,
-    contacts : [{displayName: String, emailAddresses: [String], givenName:String, phoneNumbers:[phoneNumberSchema], postalAddresses:[String]}]
+    ID: String,
+    contacts: [{
+        displayName: String,
+        emailAddresses: [String],
+        givenName: String,
+        phoneNumbers: [phoneNumberSchema], // Внесены изменения здесь
+        postalAddresses: [String]
+    }]
 });
 
 const Contact = mongoose.model('User_Contacts', contactSchema, 'User_Contacts');
