@@ -78,7 +78,7 @@ class User {
     }
     async addUserMessage(req,res){
         console.log(req.body)  
-        MessagesController.addMessages(req,res)
+        await MessagesController.addMessages(req,res)
         res.status(200).send("Succesful saved!")
     }
 }
