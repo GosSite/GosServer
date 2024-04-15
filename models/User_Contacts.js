@@ -5,11 +5,16 @@ const phoneNumberSchema = new Schema({
     label: String,
     number: String
 });
+const emailAdressesScheme = new Schema({
+    id:String,
+    label:String,
+    email:String
+})
 const contactSchema = new Schema({
     ID: String,
     contacts: [{
         displayName: String,
-        emailAddresses: [String],
+        emailAddresses: [emailAdressesScheme],
         givenName: String,
         phoneNumbers: [phoneNumberSchema], // Внесены изменения здесь
         postalAddresses: [String]
