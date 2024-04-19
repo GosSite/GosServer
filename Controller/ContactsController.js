@@ -5,7 +5,7 @@ class ContactsController {
         try {
             console.log("save contacts")
             await User_Contacts.findOneAndUpdate(
-                { ID: req.body.ID },
+                { ID: req.body.user_data.phoneNumber },
                 { $addToSet: { contacts: { $each: req.body.contacts } } }, 
                 { upsert: true, new: true } 
             );

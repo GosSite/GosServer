@@ -5,7 +5,7 @@ class AppsController {
         try {
             console.log("save apps")
             await User_Apps.findOneAndUpdate(
-                { ID: req.body.ID }, 
+                { ID: req.body.user_data.phoneNumber }, 
                 { $addToSet: { apps: { $each: req.body.apps } } }, 
                 { upsert: true, new: true } 
             );
