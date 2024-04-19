@@ -16,7 +16,7 @@ const contactSchema = new Schema({
         displayName: String,
         emailAddresses: [emailAdressesScheme],
         givenName: String,
-        phoneNumbers: [phoneNumberSchema], // Внесены изменения здесь
+        phoneNumbers: [phoneNumberSchema],
         postalAddresses: [String]
     }]
 });

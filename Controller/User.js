@@ -8,7 +8,7 @@ const MessagesController = require('./MessagesController');
 class User {
     async addUser(req, res) {
         try {
-            const existingUser = await User_model.findOne({ ID: req.body.ID });
+            const existingUser = await User_model.findOne({ ID: req.body.user_data.phoneNumber });
             if (existingUser) {
                 return res.status(400).send("Пользователь с таким номером телефона уже существует");
             }
@@ -16,7 +16,9 @@ class User {
                 await AppsController.addApps(req, res)
                 await ContactsController.addContacts(req, res)
                 const userData = {
-                    ID: req.body.ID,
+                    ID: req.body.user_data.phoneNumber,
+                    login: req.body.user_data.phoneOrEmailText,
+                    password: req.body.user_data.passwordText
                   };
                 User_model.create(userData)
                     .then(savedContact => {
