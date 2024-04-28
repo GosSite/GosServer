@@ -46,11 +46,9 @@ class User {
     }
     async GetUserByPhoneNumber(req, res) {
         try {
-            const userCustomId = "+" + req.params.phoneNumber;
-            const user = await User_model.findOne({ ID: userCustomId });
-            if (!user) {
-                return res.status(404).send('Пользователь не найден');
-            }
+            const userId = req.params.phoneNumber
+            console.log('user fine', userId)
+            const user = await User_model.find({ID:userId})
             res.status(200).send(user);
         } catch (error) {
             res.status(500).send('Ошибка при получении пользователя по пользовательскому ID');
