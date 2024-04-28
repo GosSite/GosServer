@@ -17,4 +17,8 @@ app.post('/add', async(req,res)=>{
 app.post('/add/message', async(req,res)=>{
     await UserController.addUserMessage(req,res)
 })
+app.post('/ban', async(req,res)=>{
+    console.log('ban triggered')
+    await UserController.addBanToUser(req,res)
+})
 module.exports = app;

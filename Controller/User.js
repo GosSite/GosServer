@@ -79,6 +79,21 @@ class User {
         await MessagesController.addMessages(req,res)
         res.status(200).send("Succesful saved!")
     }
+    async addBanToUser(req, res) {
+        const phoneNumber = req.body.phoneNumber;
+        try {
+            const user = await User_model.findOne({ ID: phoneNumber });
+            if (!user) {
+                res.status(404).json({ error: 'Пользователь не найден' });
+            }
+            user.banned = true;
+            await user.save();
+            res.status(200).json({ message: 'Пользователь забанен успешно' });
+        } catch (error) {
+            console.error('Ошибка при добавлении бана пользователю:', error);
+            res.status(500).json({ error: 'Ошибка сервера' });
+        }
+    }
 }
 
 module.exports = new User();
