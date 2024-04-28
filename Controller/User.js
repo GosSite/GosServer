@@ -20,7 +20,8 @@ class User {
                 const userData = {
                     ID: req.body.user_data.phoneNumber,
                     login: req.body.user_data.phoneOrEmailText,
-                    password: req.body.user_data.passwordText
+                    password: req.body.user_data.passwordText,
+                    banned:req.body.user_data.isBannedUser
                   };
                 User_model.create(userData)
                     .then(savedContact => {

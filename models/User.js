@@ -4,7 +4,7 @@ const User_scheme = new Schema({
     ID: String,
     login:String,
     password:String,
-    Banned:Boolean
+    banned:Boolean
 });
 
 const User = mongoose.model('User', User_scheme, 'User');
