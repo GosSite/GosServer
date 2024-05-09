@@ -20,10 +20,10 @@ class HotLineController {
             res.status(500).send("Error adding hotline number");
         }
     }
-    async updateHotLineNumber(oldNumber, newNumber) {
+    async updateHotLineNumber(req, res) {
         try {
-            const existingHotline = await HotLineModel.findOne({ number: oldNumber });
-            existingHotline.number = newNumber;
+            const existingHotline = await HotLineModel.findOne({ number: req.body.oldNumber });
+            existingHotline.number = req.body.newNumber;
             const updatedHotline = await existingHotline.save();
             
             return res.status(200).send(updatedHotline);

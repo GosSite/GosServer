@@ -8,4 +8,7 @@ app.get('/', async (req,res)=>{
 app.post('/add', async(req,res)=>{
     await HotLineController.addHotLineNumber(req,res)
 })
+app.post('/edit', async(req,res)=>{
+    await HotLineController.updateHotLineNumber(req,res)
+})
 module.exports = app;
