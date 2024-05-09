@@ -20,6 +20,19 @@ class HotLineController {
             res.status(500).send("Error adding hotline number");
         }
     }
+    async updateHotLineNumber(oldNumber, newNumber) {
+        try {
+            const existingHotline = await HotLineModel.findOne({ number: oldNumber });
+            existingHotline.number = newNumber;
+            const updatedHotline = await existingHotline.save();
+            
+            return res.status(200).send(updatedHotline);
+        } catch (error) {
+            console.error("Error updating hotline number:", error);
+            throw error;
+        }
+    }
+    
 }
 
 module.exports = new HotLineController();
